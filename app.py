@@ -2,6 +2,7 @@ from login import login
 from lxml import etree,html
 import requests
 import time
+import json
 
 class fetcher(object):
 	
@@ -30,7 +31,7 @@ class fetcher(object):
 	def getMp4(self,url):
 		content = self.get(url)
 		root = etree.HTML(content)
-		video = root.xpath('//source/@src')[0]
+		video = root.xpath('//source/@src[0]')
 		return video
 	
 	def getPath(self):
@@ -89,6 +90,6 @@ class fetcher(object):
 		
 fetcher = fetcher()
 paths = fetcher.getPath()
-print(paths)
+json.dump(paths,open('jikexueyuan.json','w'))
 
 	
