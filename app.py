@@ -3,7 +3,7 @@ from lxml import etree,html
 import requests
 import time
 
-class fetch(object):
+class fetcher(object):
 	
 	__path__ = 'http://www.jikexueyuan.com/path/'
 	
@@ -87,7 +87,7 @@ class fetch(object):
 		return lessons
 		
 		
-fetcher = fetch()
+fetcher = fetcher()
 paths = fetcher.getPath()
 print(paths)
 
