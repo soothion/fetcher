@@ -12,7 +12,7 @@ class fetcher(object):
 		self.s = requests.Session()
 		
 	def get(self,url):
-		print('正在爬取'+url)
+		print('正在爬取'+url)##
 		try:
 			content = self.s.get(url,cookies=self.cookies).text
 		except Exception as e:
@@ -60,8 +60,8 @@ class fetcher(object):
 			chapters.append(chapter)
 		return chapters
 		
-	def getCourse(self,node):
-		nodes = node.xpath('.//ul[@class="cf"]/li')
+	def getCourse(self,x):
+		nodes = x.xpath('.//ul[@class="cf"]/li')
 		courses = []
 		for node in nodes:
 			course = {}
@@ -73,11 +73,13 @@ class fetcher(object):
 		return courses
 			
 	def getLesson(self,url):
+		print('lesson')
 		content = self.get(url)
 		root = etree.HTML(content)
-		nodes = root.xpath('div[@class="lesson-box"]/li')
+		nodes = root.xpath('//div[@class="lesson-box"]//li')
 		lessons = []
 		for node in nodes:
+			print('lesson content')
 			lesson = {}
 			lesson['title'] = node.xpath('.//h2/a')[0].text
 			lesson['description'] = node.xpath('.//p')[0].text
