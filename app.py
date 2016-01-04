@@ -73,13 +73,11 @@ class fetcher(object):
 		return courses
 			
 	def getLesson(self,url):
-		print('lesson')
 		content = self.get(url)
 		root = etree.HTML(content)
 		nodes = root.xpath('//div[@class="lesson-box"]//li')
 		lessons = []
 		for node in nodes:
-			print('lesson content')
 			lesson = {}
 			lesson['title'] = node.xpath('.//h2/a')[0].text
 			lesson['description'] = node.xpath('.//p')[0].text
